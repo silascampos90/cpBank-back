@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 
 $factory->define(\App\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'nome' => $faker->name,
         'cpf' => rand(0,99999999999),
         'password' => \Hash::make('abc123456'), // password
         'remember_token' => Str::random(10),
