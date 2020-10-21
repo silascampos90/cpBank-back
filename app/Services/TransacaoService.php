@@ -5,6 +5,7 @@ use App\Models\Conta;
 use App\Models\TipoTransacao;
 use App\Models\Transacoes;
 use Auth;
+use DB;
 
 class TransacaoService {
     
@@ -34,11 +35,11 @@ class TransacaoService {
     }
 
     public function saldo ()
-    {
-        return Transacoes::sum('valor'); 
+    {        
+        return Transacoes::where('conta_id',Auth::guard()->user()->conta->id )->sum('valor');
     }
 
     public function extrato () {
-        return Transacoes::get();
+        return Transacoes::where('conta_id',Auth::guard()->user()->conta->id )->get();
     }
 }

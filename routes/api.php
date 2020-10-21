@@ -25,5 +25,5 @@ Route::group(['middleware' => ['apiJwt']], function () {
 	Route::get('users', 'Api\\UserController@index');
     Route::get('transacao/extrato', 'Transacoes\\TransacaoController@index');
 	Route::get('transacao/saldo', 'Transacoes\\TransacaoController@saldo');
-	Route::get('transacao/saque', 'Transacoes\\TransacaoController@saque');
+	Route::post('transacao/saque', 'Transacoes\\TransacaoController@saque');
 });

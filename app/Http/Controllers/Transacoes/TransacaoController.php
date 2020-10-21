@@ -83,8 +83,8 @@ class TransacaoController extends Controller
         return new TrasacaoResource($this->repository->deposito($request));
     }
 
-    public function saque(TransacaoInterface $repository)
+    public function saque(Request $request)
     {
-        //return $repository->saque($request);
+        return $this->repository->saque($request);
     }
 }
