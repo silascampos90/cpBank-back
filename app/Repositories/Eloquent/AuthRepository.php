@@ -1,12 +1,13 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Repositories\Eloquent;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\User;
-use Validator, Auth;
+use Validator;
+use Auth;
 use App\Http\Resources\AuthResource;
 use App\Http\Requests\AuthRequest;
 
@@ -36,7 +37,7 @@ class AuthRepository
         if (!$token = Auth::guard()->attempt($credentials)) {
             return response()->json([
                 'errors' => [
-                    'generic' => ['Autenticação falhou, verifique o login e senha informado e tente novamente.']
+                    'generic' => ['Falha, verifique as informações e tente novamente.']
                 ]
             ], Response::HTTP_UNAUTHORIZED);
         }

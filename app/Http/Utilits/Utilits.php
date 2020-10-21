@@ -6,6 +6,11 @@ namespace app\Http\Utilits;
 class Utilits {
 
     
+    public static function convertValor($val) {
+        $value = trim(str_replace('R$', '', $val));
+        $value  = str_replace(',', '.', str_replace('.', '', $value));   
+        return $value;
+    }
 
     public static function mask($mask, $string) {
         $string = str_replace(' ', '', $string);
