@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\ValidateCPF;
+use App\Rules\ValidateDeposito;
 
-class AuthRequest extends FormRequest
+class DepositoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class AuthRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,18 +25,18 @@ class AuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'cpf' => ['required', new ValidateCPF],
-            'password'  => 'required|min:5|max:8'
+            'agencia' => 'required',
+            'conta' => 'required',
+            'valor' => ['required', new ValidateDeposito()]
         ];
     }
 
     public function messages()
     {
         return [
-            'cpf.required' => 'O CPF é Obrigatório',
-            'password.required'=> 'A Senha é Obrigatória',
-            'password.min' => 'A Senha deve conter Mínimo 5 e Máximo 8',
-            'password.max' => 'A Senha deve conter Mínimo 5 e Máximo 8'
+            'agencia.required' => 'Número da Agência obrigatória',
+            'conta.required' => 'Número da conta obrigatório',
+            'valor.required' => 'Valor para depósito obrigatório'
         ];
     }
 }

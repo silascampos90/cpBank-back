@@ -5,23 +5,26 @@ namespace app\Http\Utilits;
 
 class Utilits {
 
-    public static function moneyBr($_value, $_qtdDecimais = 2) {
-        return number_format($_value, $_qtdDecimais, ',', '.');    
-    }
+    
 
-    public static function mask ($_mask, $_string) {
-        $string = str_replace(' ', '', $_string);
+    public static function mask($mask, $string) {
+        $string = str_replace(' ', '', $string);
 
         for ($i=0; $i<strlen($string); $i++) {
-            $_mask[strpos($_mask, '#')] = $string[$i];
+            $mask[strpos($mask, '#')] = $string[$i];
         }
-        return $_mask;
-    }    
+        return $mask;
+    } 
 
-    public static function isValidCPF ($_cpf) 
+
+    public static function moedaBrasil($valor, $decimal = 2) {
+        return number_format($valor, $decimal, ',', '.');    
+    }
+
+    public static function cpfValido($cpf) 
     {
         // Extrai somente os números
-		$cpf = preg_replace( '/[^0-9]/is', '', $_cpf);
+		$cpf = preg_replace( '/[^0-9]/is', '', $cpf);
 		 
 		// Verifica se foi informado todos os digitos corretamente
 		if (strlen($cpf) != 11) {

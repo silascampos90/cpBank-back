@@ -3,9 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\ValidateCPF;
+use App\Rules\ValidateSaque;
+use App\Rules\ValidateSenha;
 
-class AuthRequest extends FormRequest
+class SaqueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +15,7 @@ class AuthRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,18 +26,16 @@ class AuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'cpf' => ['required', new ValidateCPF],
-            'password'  => 'required|min:5|max:8'
+            'valor'     => ['required', new ValidateSaque()],
+            'password'  => ['required', new ValidateSenha()]
         ];
     }
 
     public function messages()
     {
         return [
-            'cpf.required' => 'O CPF é Obrigatório',
-            'password.required'=> 'A Senha é Obrigatória',
-            'password.min' => 'A Senha deve conter Mínimo 5 e Máximo 8',
-            'password.max' => 'A Senha deve conter Mínimo 5 e Máximo 8'
+            'valor.required' => 'O valor é obrigatório',
+            'password.required' => 'A senha é obrigatória'
         ];
     }
 }
