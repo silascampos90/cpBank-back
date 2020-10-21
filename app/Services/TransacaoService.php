@@ -13,25 +13,28 @@ class TransacaoService {
     {
         
         $tipoTransacao = TipoTransacao::where('descricao','Depósito')->first()->id;
-        $transacao = Transacoes::create([
+        $deposito = Transacoes::create([
             'valor'     => $valor,
             'tipo_transacao_id' => $tipoTransacao,            
             'conta_id'  => $conta
         ]);
 
-        return $transacao;
+        return $deposito;
     }
 
     public function saque($valor)
     {
         $tipoTransacao = TipoTransacao::where('descricao','Saque')->first()->id;
-        $transacao = Transacoes::create([
-            'valor'     => -$valor,
-            'tipo_movimento_id' => $tipoTransacao,
+
+        
+        $saque = Transacoes::create([
+            'valor'     => $valor,
+            'tipo_transacao_id' => $tipoTransacao,
             'conta_id'  =>  Auth::guard()->user()->conta->id
             
         ]);
-        return $transacao;
+
+        return $saque;
     }
 
     public function saldo ()

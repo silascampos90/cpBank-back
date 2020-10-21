@@ -85,6 +85,8 @@ class TransacaoRepository extends AbstractRepository implements TransacaoInterfa
 
     public function saque(Request $request)
     {
+
+        
         $validator = Validator::make(
             $request->all(),
             (new SaqueRequest)->rules(),
@@ -101,6 +103,6 @@ class TransacaoRepository extends AbstractRepository implements TransacaoInterfa
 
         $transacao = (new TransacaoService)->saque($valor_atualizado);
 
-        return new TransacaoService($transacao);
+        return $transacao;
     }
 }

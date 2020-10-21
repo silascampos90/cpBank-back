@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use App\Repositories\Contracts\TransacaoInterface;
 
 use App\Http\Resources\SaldoResource;
+use App\Http\Resources\SaqueResource;
 use App\Http\Resources\TrasacaoCollection;
 use App\Http\Resources\TrasacaoResource;
 
@@ -85,6 +86,8 @@ class TransacaoController extends Controller
 
     public function saque(Request $request)
     {
-        return $this->repository->saque($request);
+      
+        return new SaqueResource($this->repository->saque($request));
+        
     }
 }

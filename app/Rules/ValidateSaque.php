@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-use App\Service\TransacaoService;
+use App\Services\TransacaoService;
 
 class ValidateSaque implements Rule
 {
@@ -29,7 +29,7 @@ class ValidateSaque implements Rule
     public function passes($attribute, $value)
     {
         if (request()->valor >= 0 && request()->valor > (new TransacaoService)->saldo()) {
-            $this->message = 'Saldo disponível';
+            $this->message = 'Saldo Insuficiente';
             return false;
         }
 

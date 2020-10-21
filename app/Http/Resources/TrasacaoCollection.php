@@ -17,24 +17,26 @@ class TrasacaoCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        // $collect = $this->collection->map(function ($transacao) {
-        //     return new TrasacaoResource($transacao);
-        // });
 
         
-        // return [
-        //     'data' => $collect,
-        //     'meta' => [
-        //         'saldo' => Utilits::moedaBrasil($collect->sum('valor')),
-        //         'registros' => $collect->count()
-        //     ]
-        // ];
-
-         return [
+        return [
             'data' => $this->collection,
-            'links' => [
-                'self' => 'link-value',
-            ],
+            'meta' => [
+                'saldoTotal' => Utilits::moedaBrasil($this->collection->sum('valor'))
+            ]
         ];
+        
+
+        
+         
+        // return [
+        //     'id'    => $this->id,
+        //     'valor' => $this->valor,
+        //     'saldo'   => Utilits::moedaBrasil($this->valor),
+        //     'tipoTrasacao' => $this->tipoTrasacao,
+        //     'conta' => new ContaResource($this->conta),
+        //     'usuario'   => new UsuarioResource($this->conta->usuario),
+        //     'dataHora' => $this->created_at->format('d/m/Y H:i')
+        // ];
     }
 }

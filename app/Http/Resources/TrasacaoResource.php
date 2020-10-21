@@ -4,6 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Utilits\Utilits;
+use App\Http\Resources\ContaResource;
+use App\Http\Resources\UsuarioResource;
 
 class TrasacaoResource extends JsonResource
 {
