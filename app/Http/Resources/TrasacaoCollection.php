@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Http\Resources\TrasacaoResource;
+
 use App\Http\Utilits\Utilits;
 
 class TrasacaoCollection extends ResourceCollection
@@ -16,15 +17,16 @@ class TrasacaoCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        $collection = $this->collection->map(function ($_movimento) {
-            return new TrasacaoResource($_movimento);
+        $collect = $this->collection->map(function ($transacao) {
+            return new TrasacaoResource($transacao);
         });
 
+        
         return [
-            'data' => $collection,
+            'data' => $collect,
             'meta' => [
-                'saldo' => Utilits::moedaBrasil($collection->sum('valor')),
-                'registros' => $collection->count()
+                'saldo' => Utilits::moedaBrasil($collect->sum('valor')),
+                'registros' => $collect->count()
             ]
         ];
     }
