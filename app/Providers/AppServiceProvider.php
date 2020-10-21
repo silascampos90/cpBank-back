@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
         // NECESSÀRIO PARA O laravel entender que o interface tem uma instancia do repository
         $this->app->bind(
             \App\Repositories\Contracts\TransacaoInterface::class,
-            \App\Repositories\Eloquente\TransacaoRepository::class
+            \App\Repositories\Eloquent\TransacaoRepository::class
         );
     }
 

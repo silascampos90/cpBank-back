@@ -6,6 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class ValidateSaldo implements Rule
 {
+    protected $message;
     /**
      * Create a new rule instance.
      *
@@ -35,6 +36,6 @@ class ValidateSaldo implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return $this->message;
     }
 }

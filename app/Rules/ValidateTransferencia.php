@@ -6,6 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class ValidateTransferencia implements Rule
 {
+    protected $message;
     /**
      * Create a new rule instance.
      *

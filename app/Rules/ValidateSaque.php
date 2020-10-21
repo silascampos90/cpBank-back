@@ -8,6 +8,7 @@ use App\Service\TransacaoService;
 
 class ValidateSaque implements Rule
 {
+    protected $message;
     /**
      * Create a new rule instance.
      *

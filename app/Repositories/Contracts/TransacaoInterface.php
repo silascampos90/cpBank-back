@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Repository\Contracts;
+namespace App\Repositories\Contracts;
+
 use Illuminate\Http\Request;
 
-interface MovimentoRepositoryInterface {
+interface TransacaoInterface {
     
 
 

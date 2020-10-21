@@ -9,18 +9,18 @@ class Conta extends Model
     protected $fillable = ['numero', 'agencia_id', 'usuario_id'];
 
 
-    public function Usuario(){
+    public function usuario(){
 
         return $this->belongsTo('App\User','usuario_id','id');
     }
 
-    public function Agencia() {
+    public function agencia() {
 
         return $this->belongsTo('App\Models\Agencia','agencia_id','id');
 
     }
 
-    public function Transacoes(){
+    public function transacoes(){
 
         return $this->HasMany('App\Models\Transacoes');
     }

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class ValidateDeposito implements Rule
 {
+    protected $message;
     /**
      * Create a new rule instance.
      *
@@ -29,6 +30,8 @@ class ValidateDeposito implements Rule
                 $this->message = 'Não é possível depositar esse valor';
                 return false;
             }
+
+            return true;
     }
 
     /**
@@ -38,6 +41,6 @@ class ValidateDeposito implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return $this->message;
     }
 }

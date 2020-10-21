@@ -9,6 +9,7 @@ use Auth;
 
 class ValidateSenha implements Rule
 {
+    protected $message;
     /**
      * Create a new rule instance.
      *

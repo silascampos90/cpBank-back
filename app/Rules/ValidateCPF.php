@@ -7,6 +7,7 @@ use App\Http\Utilits\Utilits;
 
 class ValidateCPF implements Rule
 {
+    protected $message;
     /**
      * Create a new rule instance.
      *
@@ -27,6 +28,7 @@ class ValidateCPF implements Rule
     public function passes($attribute, $value)
     {
         $cpf = request()->cpf;
+
         
         if (strlen($cpf) !== 11) {
             $this->message = 'O número informado não é um CPF válido.';
@@ -37,6 +39,8 @@ class ValidateCPF implements Rule
             $this->message = 'O número do cpf é inválido.';
             return false;
         }
+
+        return true;
     }
 
     /**
@@ -46,6 +50,6 @@ class ValidateCPF implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return $this->message;
     }
 }

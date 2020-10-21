@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transacoes extends Model
 {
-    protected $filable = ['valor','tipo_transacao_id','conta_id'];
+    protected $fillable = ['valor','tipo_transacao_id','conta_id'];
 
     public function conta()
     {

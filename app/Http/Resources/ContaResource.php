@@ -16,12 +16,17 @@ class ContaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $return =  [
             'numero' => $this->numero,
             'agencia' => new AgenciaResource($this->agencia_id),
-            'usuario' => new AgenciaResource($this->users_id),
+            'usuario' => new UsuarioResource($this->users_id),
             'created_at' => $this->created_at->format('d/m/Y H:i'),
             'updated_at' => $this->updated_at->format('d/m/Y H:i')
         ];
+
+        if ($this->token) {
+            $return['token'] = \Hash::make($this->id);
+        }
+        return $return;
     }
 }

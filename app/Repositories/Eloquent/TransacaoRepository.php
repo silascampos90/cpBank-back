@@ -19,13 +19,13 @@ use App\Http\Requests\DepositoRequest;
 use App\Services\TransacaoService;
 
 use App\Http\Utilits\Utilits;
-use Validator;
-use Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Repositories\Eloquent\AbstractRepository;
-use App\Repository\Contracts\MovimentoRepositoryInterface;
+use App\Repositories\Contracts\TransacaoInterface;
 
 
-class MovimentoRepository extends AbstractRepository implements MovimentoRepositoryInterface
+
+class TransacaoRepository extends AbstractRepository implements TransacaoInterface
 {
 
     protected $transacao;
@@ -51,13 +51,12 @@ class MovimentoRepository extends AbstractRepository implements MovimentoReposit
     public function deposito(Request $request)
 
     {
-
-        $deposito = Conta::select('contas.*')
-            ->join('agencias', 'agencias.id', 'contas.agencia_id')
-            ->join('users', 'users.id', 'contas.user_id')
-            ->where('contas.numero', $request->numero)
-            ->where('agencias.numero', $request->agencia)
-            ->where('users.cpf', $request->cpf)
+        
+        $deposito = Conta::join('agencias', 'agencias.id', 'contas.agencia_id')
+            ->join('users', 'users.id', 'contas.users_id')
+            ->where('contas.numero',  $request->conta)
+            ->where('agencias.codigo', $request->agencia)
+            ->select('contas.*')
             ->first();
 
         if (!$deposito) {
@@ -70,15 +69,17 @@ class MovimentoRepository extends AbstractRepository implements MovimentoReposit
             ], Response::HTTP_NOT_ACCEPTABLE);
         }
 
-        if (!$request->filled('token')) {
-            $deposito->token = true;
-            return $deposito;
-        }
+        // if (!$request->filled('token')) {
+        //     $deposito->token = true;
+        //     return $deposito;
+        // }
 
         $valor_atualizado = Utilits::convertValor($request->valor);
 
-        $transacao = (new TransacaoService)->deposito($deposito->id, $valor_atualizado);
+       
 
+        $transacao = (new TransacaoService)->deposito($deposito->id, $valor_atualizado);
+            
         return $transacao;
     }
 

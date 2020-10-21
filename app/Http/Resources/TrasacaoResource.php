@@ -15,6 +15,7 @@ class TrasacaoResource extends JsonResource
      */
     public function toArray($request)
     {
+       
         return [
             'id'    => $this->id,
             'valor' => $this->valor,
@@ -22,7 +23,6 @@ class TrasacaoResource extends JsonResource
             'tipoTrasacao' => $this->tipoTrasacao,
             'conta' => new ContaResource($this->conta),
             'usuario'   => new UsuarioResource($this->conta->usuario),
-            'agencia'   => new AgenciaResource($this->conta->agencia),
             'dataHora' => $this->created_at->format('d/m/Y H:i')
         ];
     }

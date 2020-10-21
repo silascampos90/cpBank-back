@@ -14,6 +14,8 @@ class AgenciaResource extends JsonResource
      */
     public function toArray($request)
     {
+
+        
         return [
             'codigo' => $this->codigo,
             'endereco' => $this->endereco,

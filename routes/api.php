@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
 Route::post('auth/login', 'Api\\AuthController@login');
+Route::post('transacao/deposito', 'Transacoes\\TransacaoController@deposito');
+
 Route::group(['middleware' => ['apiJwt']], function () {
 	Route::get('users', 'Api\\UserController@index');
+    Route::get('transacao/extrato', 'Transacoes\\TransacaoController@index');
+	Route::get('transacao/saldo', 'Transacoes\\TransacaoController@saldo');
+	Route::get('transacao/saque', 'Transacoes\\TransacaoController@saque');
 });

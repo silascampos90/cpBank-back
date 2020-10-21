@@ -15,11 +15,13 @@ use App\Http\Requests\DepositoRequest;
 
 use App\Models\Conta;
 
+use Illuminate\Support\Facades\Validator;
+
 
 class TransacaoController extends Controller
 {
     protected $repository;
-    
+
     public function __construct()
     {
         $this->repository = app(TransacaoInterface::class);
@@ -54,13 +56,12 @@ class TransacaoController extends Controller
             );
         }
         $conta = Conta::join('agencias', 'agencias.id', 'contas.agencia_id')
-            ->join('users', 'users.id', 'contas.user_id')
+            ->join('users', 'users.id', 'contas.users_id')
             ->where('contas.numero',  $request->conta)
-            ->where('agencias.numero', $request->agencia)
-            ->where('users.documento', $request->documento)
+            ->where('agencias.codigo', $request->agencia)
             ->select('contas.*')
             ->first();
-                
+
         if (!$conta) {
             return response()->json([
                 'errors' => [
@@ -71,18 +72,19 @@ class TransacaoController extends Controller
             ], Response::HTTP_NOT_ACCEPTABLE);
         }
 
-        if (!$request->filled('token')) {  
-            $conta->token = true;    
-            return $conta;
-        } 
 
-        return new TrasacaoResource(
-            $this->repository->deposito($request)
-        );
+        //  if (!$request->filled('token')) {  
+        //      $conta->token = true;    
+        //      return $conta;
+        //  } 
+
+
+
+        return new TrasacaoResource($this->repository->deposito($request));
     }
 
     public function saque(TransacaoInterface $repository)
-    {   
-        return $repository->saque($request);
+    {
+        //return $repository->saque($request);
     }
 }
