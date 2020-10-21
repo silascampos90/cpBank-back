@@ -16,13 +16,13 @@ class Conta extends Model
 
     public function Agencia() {
 
-        return $this->belongsTo('App\model\Agencia','agencia_id','id');
+        return $this->belongsTo('App\Models\Agencia','agencia_id','id');
 
     }
 
     public function Transacoes(){
 
-        return $this->HasMany('App\model\Transacoes');
+        return $this->HasMany('App\Models\Transacoes');
     }
 
 }

@@ -30,14 +30,14 @@ class ContaSeeder extends Seeder
             $client_1 = User::create([
                 'nome' => 'Silas Silva Campos',
                 'cpf' => '85257346593',
-                'password' => \Hash::make(123456789)
+                'password' => \Hash::make(123456)
 
             ]);
 
             $client_2 = User::create([
                 'nome' => 'Maria Carla Pereira',
                 'cpf' => '36327116078',
-                'password' => \Hash::make(123456789)
+                'password' => \Hash::make(123456)
 
             ]);
 

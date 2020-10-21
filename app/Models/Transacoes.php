@@ -10,11 +10,11 @@ class Transacoes extends Model
 
     public function conta()
     {
-        return $this->belongsTo('App\model\Conta');
+        return $this->belongsTo('App\Models\Conta');
     }
 
     public function tipoTrasacao()
     {
-        return $this->belongsTo('App\model\TipoTransacao');
+        return $this->belongsTo('App\Models\TipoTransacao');
     }
 }
