@@ -1,8 +1,9 @@
 <?php
 
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
-class ModelContaSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +12,7 @@ class ModelContaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
+        Factory(\App\User::class,5)->create();
     }
 }

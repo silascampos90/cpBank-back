@@ -1,10 +1,10 @@
 <?php
 
-namespace App\model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoTrasacao extends Model
+class TipoTransicao extends Model
 {
     protected $fillable = ['descricao'];
 }

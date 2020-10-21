@@ -1,9 +1,8 @@
 <?php
 
-namespace App\model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Conta extends Model
 {
@@ -25,6 +24,5 @@ class Conta extends Model
 
         return $this->HasMany('App\model\Transacoes');
     }
-
 
 }

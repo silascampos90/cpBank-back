@@ -1,14 +1,12 @@
 <?php
 
-namespace App\model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Transacoes extends Model
 {
     protected $filable = ['valor','tipo_transacao_id','conta_id'];
-
-
 
     public function conta()
     {
@@ -19,5 +17,4 @@ class Transacoes extends Model
     {
         return $this->belongsTo('App\model\TipoTransacao');
     }
-    
 }
