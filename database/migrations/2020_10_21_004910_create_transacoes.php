@@ -18,7 +18,7 @@ class CreateTransacoes extends Migration
             $table->float('valor');
             $table->unsignedInteger('tipo_transacao_id');
             $table->unsignedBigInteger('conta_id');
-            $table->foreign('tipo_transacao_id')->references('id')->on('tipos_transacoes');
+            $table->foreign('tipo_transacao_id')->references('id')->on('tipo_transacoes');
             $table->foreign('conta_id')->references('id')->on('contas');
             $table->timestamps();
             $table->softDeletes();;

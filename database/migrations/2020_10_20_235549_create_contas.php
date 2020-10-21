@@ -17,9 +17,9 @@ class CreateContas extends Migration
             $table->bigIncrements('id');
             $table->string('numero')->unique();
             $table->unsignedInteger('agencia_id');
-            $table->unsignedInteger('usuario_id');
+            $table->unsignedInteger('users_id');
             $table->foreign('agencia_id')->references('id')->on('agencias');
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

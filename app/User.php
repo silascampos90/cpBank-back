@@ -33,5 +33,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    public function Conta(){
+
+        return $this->hasOne('App\model\Conta','id','id');
+    }
     
 }

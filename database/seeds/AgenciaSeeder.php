@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\model\Agencia;
 
 class AgenciaSeeder extends Seeder
 {
@@ -11,6 +12,11 @@ class AgenciaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        if (!Agencia::count()) {
+            Agencia::create([
+                'numero' => '0001',
+                'endereco' => 'Alameda dos Anjos, n35'
+            ]);
+        }
     }
 }
