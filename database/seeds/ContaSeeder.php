@@ -24,19 +24,19 @@ class ContaSeeder extends Seeder
         // });
 
         if (!Conta::count()) {
-            
+
             $id_agencia = Agencia::where('codigo','0001')->first()->id;
 
             $client_1 = User::create([
                 'nome' => 'Silas Silva Campos',
-                'cpf' => '85257346593',
+                'cpf' => '85257346591',
                 'password' => \Hash::make(123456)
 
             ]);
 
             $client_2 = User::create([
                 'nome' => 'Maria Carla Pereira',
-                'cpf' => '36327116078',
+                'cpf' => '13101797004',
                 'password' => \Hash::make(123456)
 
             ]);
