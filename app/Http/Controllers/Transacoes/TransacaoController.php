@@ -10,7 +10,7 @@ use App\Repositories\Contracts\TransacaoInterface;
 use App\Http\Resources\SaldoResource;
 use App\Http\Resources\SaqueResource;
 use App\Http\Resources\TrasacaoCollection;
-use App\Http\Resources\TrasacaoResource;
+use App\Http\Resources\DepositoResource;
 
 use App\Http\Requests\DepositoRequest;
 
@@ -81,7 +81,7 @@ class TransacaoController extends Controller
 
 
 
-        return new TrasacaoResource($this->repository->deposito($request));
+        return new DepositoResource($this->repository->deposito($request));
     }
 
     public function saque(Request $request)

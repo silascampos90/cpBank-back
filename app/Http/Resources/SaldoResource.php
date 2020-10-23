@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Utilits\Utilits;
+use App\Http\Resources\ContaResource;
 
 class SaldoResource extends JsonResource
 {
@@ -15,8 +16,10 @@ class SaldoResource extends JsonResource
      */
     public function toArray($request)
     {
+      
         return [
             'valor' => $this->valor,
+            'conta' => $this->numero,
             'saldo' => Utilits::moedaBrasil($this->valor),
             'dataHora' => date('d/m/Y H:i'),
         ];

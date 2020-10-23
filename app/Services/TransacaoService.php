@@ -39,6 +39,10 @@ class TransacaoService {
 
     public function saldo ()
     {        
+        // $tempo = Transacoes::select('numero', DB::raw('sum(valor) as valor'))->where('transacoes.conta_id',Auth::guard()->user()->conta->id )
+        //                      ->join('contas','transacoes.conta_id','contas.id')                   
+        //                      ->groupBy('numero')->get();
+                             
         return Transacoes::where('conta_id',Auth::guard()->user()->conta->id )->sum('valor');
     }
 
