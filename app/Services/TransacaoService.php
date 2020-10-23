@@ -28,7 +28,7 @@ class TransacaoService {
 
         
         $saque = Transacoes::create([
-            'valor'     => $valor,
+            'valor'     => '-'.$valor,
             'tipo_transacao_id' => $tipoTransacao,
             'conta_id'  =>  Auth::guard()->user()->conta->id
             

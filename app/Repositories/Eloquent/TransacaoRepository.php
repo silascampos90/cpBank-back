@@ -94,10 +94,13 @@ class TransacaoRepository extends AbstractRepository implements TransacaoInterfa
         );
 
         if ($validator->fails()) {
-            return response()->json(
-                ['errors' => $validator->messages()],
-                Response::HTTP_NOT_ACCEPTABLE
-            );
+            return response()->json([
+                'errors' => [
+                    'generic' => [
+                        $validator->messages()
+                    ]
+                ]
+            ], Response::HTTP_NOT_ACCEPTABLE);
         }
         $valor_atualizado = Utilits::convertValor($request->valor);
 
