@@ -5,17 +5,14 @@ namespace App\Repositories\Eloquent;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-use App\Http\Resources\TrasacaoCollection;
-use App\Http\Resources\TrasacaoResource;
 use App\Http\Resources\SaldoResource;
-use App\Http\Resources\ContaResource;
+use App\Http\Resources\SaqueResource;
+use App\Http\Resources\DepositoResource;
 
 use App\Models\Transacoes;
 use App\Models\Conta;
-use App\User;
 
 use App\Http\Requests\SaqueRequest;
-use App\Http\Requests\DepositoRequest;
 use App\Services\TransacaoService;
 
 use App\Http\Utilits\Utilits;
@@ -80,7 +77,7 @@ class TransacaoRepository extends AbstractRepository implements TransacaoInterfa
 
         $transacao = (new TransacaoService)->deposito($deposito->id, $valor_atualizado);
             
-        return $transacao;
+        return new DepositoResource($transacao);
     }
 
     public function saque(Request $request)
@@ -93,19 +90,21 @@ class TransacaoRepository extends AbstractRepository implements TransacaoInterfa
             (new SaqueRequest)->messages()
         );
 
+        
         if ($validator->fails()) {
-            return response()->json([
-                'errors' => [
-                    'generic' => [
-                        $validator->messages()
-                    ]
-                ]
-            ], Response::HTTP_NOT_ACCEPTABLE);
+            return response()->json(
+                ['errors' => $validator->messages()],
+                Response::HTTP_NOT_ACCEPTABLE
+            );
+            
         }
+
+        
+        
         $valor_atualizado = Utilits::convertValor($request->valor);
 
         $transacao = (new TransacaoService)->saque($valor_atualizado);
 
-        return $transacao;
+        return new SaqueResource($transacao);
     }
 }

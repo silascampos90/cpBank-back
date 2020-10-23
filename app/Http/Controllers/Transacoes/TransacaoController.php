@@ -37,9 +37,7 @@ class TransacaoController extends Controller
 
     public function saldo()
     {
-        return new SaldoResource(
-            $this->repository->saldo()
-        );
+        return  $this->repository->saldo();
     }
 
     public function deposito(Request $request)
@@ -81,13 +79,13 @@ class TransacaoController extends Controller
 
 
 
-        return new DepositoResource($this->repository->deposito($request));
+        return $this->repository->deposito($request);
     }
 
     public function saque(Request $request)
     {
       
-        return new SaqueResource($this->repository->saque($request));
+        return $this->repository->saque($request);
         
     }
 }

@@ -28,11 +28,12 @@ class ValidateSaque implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (request()->valor >= 0 && request()->valor > (new TransacaoService)->saldo()) {
+       
+        if (request()->valor >= 0 && request()->valor > (new TransacaoService)->saldo()) {            
             $this->message = 'Saldo Insuficiente';
             return false;
         }
-
+        
         return true;
     }
 
