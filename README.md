@@ -1,5 +1,7 @@
 Após o clone e acessar a pasta cpBank-back
 
+Renomei o .env.sqlite para .env
+
 ## Executar as atualizações
 
 ````
