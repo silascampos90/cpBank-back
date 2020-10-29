@@ -88,4 +88,11 @@ class TransacaoController extends Controller
         return $this->repository->saque($request);
         
     }
+
+    public function transferencia(Request $request)
+    {
+      
+        return $this->repository->transferencia($request);
+        
+    }
 }

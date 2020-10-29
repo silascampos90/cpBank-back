@@ -13,6 +13,8 @@ use App\Models\Transacoes;
 use App\Models\Conta;
 
 use App\Http\Requests\SaqueRequest;
+use App\Http\Requests\TransferenciaRequest;
+use App\Http\Resources\TransferenciaResource;
 use App\Services\TransacaoService;
 
 use App\Http\Utilits\Utilits;
@@ -106,5 +108,29 @@ class TransacaoRepository extends AbstractRepository implements TransacaoInterfa
         $transacao = (new TransacaoService)->saque($valor_atualizado);
 
         return new SaqueResource($transacao);
+    }
+
+
+    public function transferencia(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            (new TransferenciaRequest)->rules(),
+            (new TransferenciaRequest)->messages()
+        );
+
+        if ($validator->fails()) {
+            return response()->json(
+                ['errors' => $validator->messages()],
+                Response::HTTP_NOT_ACCEPTABLE
+            );
+            
+        }
+
+        $agencia_origem = Auth::guard()->user()->conta->id;
+
+        $transacao = (new TransacaoService)->transferencia($request);
+
+        return new TransferenciaResource($transacao);
     }
 }

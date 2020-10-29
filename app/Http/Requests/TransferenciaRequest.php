@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidateSaque;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\ValidateSenha;
+use App\Rules\ValidateConta;
+use App\Rules\ValidateAgencia;
 
 class TransferenciaRequest extends FormRequest
 {
@@ -24,7 +28,10 @@ class TransferenciaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "agencia" => ['required', new ValidateAgencia()],
+            "conta" => ['required', new ValidateConta()],
+            "valor" => ['required', new ValidateSaque()],
+            "senha" => ['required', new ValidateSenha()],
         ];
     }
 }
